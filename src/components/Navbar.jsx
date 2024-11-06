@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import logo from '../assets/logo.jpg';
+import logo from '../assets/logo.svg'
 import { NavLinks, serviceData } from '../utils/servicesData';
 
 export default function Navbar() {
@@ -15,7 +15,7 @@ export default function Navbar() {
                 <motion.img
                     src={logo}
                     alt="Logo"
-                    className="h-12 w-12 rounded-full"
+                    className="h-12 w-12"
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5 }}
