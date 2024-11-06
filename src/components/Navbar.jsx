@@ -9,7 +9,7 @@ export default function Navbar() {
     const [showSubMenu, setShowSubMenu] = useState(false);
 
     return (
-        <nav className="flex items-center justify-between p-4 bg-white text-gray-800">
+        <nav className="nav-header flex items-center justify-between p-4 bg-white text-gray-800 sticky top-0 z-10">
             {/* Logo and Name */}
             <div className="flex items-center">
                 <div className='w-28 overflow-hidden'>
