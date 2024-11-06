@@ -12,21 +12,16 @@ export default function Navbar() {
         <nav className="flex items-center justify-between p-4 bg-white text-gray-800">
             {/* Logo and Name */}
             <div className="flex items-center">
-                <motion.img
-                    src={logo}
-                    alt="Logo"
-                    className="h-12 w-12"
-                    initial={{ x: -50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    whileHover={{ scale: 1.2 }}
-                />
+                <div className='w-28 overflow-hidden'>
+                    <motion.img
+                        src={logo}
+                        alt="Logo"
+                        className="h-full w-full"
+                        style={{ transform: "scale(1.7)" }}
+                    />
+                </div>
                 <motion.h1
-                    className="text-xl hidden lg:flex font-bold hover:scale-110 hover:text-[#ab8925] transition-transform duration-300 font-serif"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.1 }}
-                    whileHover={{ scale: 1.1 }}
+                    className="text-xl hidden lg:flex font-bold font-serif ml-1.5"
                 >
                     Halchemy Interior
                 </motion.h1>
@@ -56,11 +51,11 @@ export default function Navbar() {
                                         initial={{ opacity: 0, y: -10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.3 }}
-                                        className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2"
+                                        className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-0"
                                     >
                                         {serviceData.map((service) => (
                                             <li key={service.id} className="py-1 px-2 hover:bg-gray-200 rounded">
-                                                <a href={`services`} className="text-gray-700">
+                                                <a href={`${service.title}`} className="text-gray-700">
                                                     {service.title}
                                                 </a>
                                             </li>

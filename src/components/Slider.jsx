@@ -24,7 +24,7 @@ export default function Slider() {
                 }}
                 autoplay={{ delay: 2000, disableOnInteraction: false }}
                 modules={[Pagination, Autoplay]}
-                className="mySwiper"
+                className="mySwiper flex transition-transform duration-500 ease-in-out"
             >
                 <SwiperSlide><img src={proto_1} alt="image1" /></SwiperSlide>
                 <SwiperSlide><img src={proto_2} alt="image1" /></SwiperSlide>

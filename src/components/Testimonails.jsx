@@ -35,7 +35,7 @@ const TestimonialSlider = () => {
             <SectionHeader mainHeading="What Our Client Say" subHeading="About Us" />
             <div className="w-full flex justify-between items-center bg-white rounded-lg p-6 text-center">
                 {/* Previous Arrow */}
-                <button onClick={prevSlide} className="transform -translate-x-8 flex items-center">
+                <button onClick={prevSlide} >
                     <FaArrowLeft className="ml-2 text-lg sm:text-xl text-gray-500" />
                     {/* Show image on larger screens */}
 
@@ -54,7 +54,7 @@ const TestimonialSlider = () => {
                 </div>
 
                 {/* Next Arrow */}
-                <button onClick={nextSlide} className="transform translate-x-8 flex items-center">
+                <button onClick={nextSlide} >
                     {/* Show image on larger screens */}
 
                     <FaArrowRight className="ml-2 text-lg sm:text-xl text-gray-500" />
