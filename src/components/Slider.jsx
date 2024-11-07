@@ -22,9 +22,10 @@ export default function Slider() {
                 pagination={{
                     clickable: true,
                 }}
-                autoplay={{ delay: 2000, disableOnInteraction: false }}
+                autoplay={{ delay: 1000, disableOnInteraction: false }}
                 modules={[Pagination, Autoplay]}
                 className="mySwiper flex transition-transform duration-500 ease-in-out"
+                setProgress={(progress: 1, speed?: 1000)}
             >
                 <SwiperSlide><img src={proto_1} alt="image1" /></SwiperSlide>
                 <SwiperSlide><img src={proto_2} alt="image1" /></SwiperSlide>

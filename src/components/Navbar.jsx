@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useRef, useState,useEffect } from 'react';
 import logo from '../assets/logo.svg'
 import { NavLinks, serviceData } from '../utils/servicesData';
 
@@ -7,6 +7,21 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [showSubMenu, setShowSubMenu] = useState(false);
+    const dropdownRef = useRef(null);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     return (
         <nav className="nav-header flex items-center justify-between p-4 bg-white text-gray-800 sticky top-0 z-10">
@@ -38,16 +53,18 @@ export default function Navbar() {
                         {ind === 1 ? (
                             <div
                                 onMouseEnter={() => setShowMenu(true)}
-                                onMouseLeave={() => setShowMenu(false)}
+                                //onMouseLeave={() => setShowMenu(false)}
                                 className="relative"
                             >
                                 <a href={`${link.path}`} className="cursor-pointer">
-                                    {link.title} <span>+</span>
+                                    {link.title}
                                 </a>
 
                                 {/* Dropdown menu for Services */}
                                 {showMenu && (
                                     <motion.ul
+                                        //onMouseEnter={() => setShowMenu(true)}
+                                        onMouseLeave={() => setShowMenu(false)}
                                         initial={{ opacity: 0, y: -10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.3 }}
@@ -64,7 +81,7 @@ export default function Navbar() {
                                 )}
                             </div>
                         ) : (
-                            <a href={`${link.path}`} className="">{link.title}</a>
+                            <a onMouseEnter={() => setShowMenu(false)} href={`${link.path}`} className="">{link.title}</a>
                         )}
                     </motion.li>
                 ))}
@@ -74,6 +91,7 @@ export default function Navbar() {
             <div
                 className="md:hidden flex flex-col space-y-1 cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}
+
             >
                 <span className="block w-6 h-0.5 bg-gray-800"></span>
                 <span className="block w-6 h-0.5 bg-gray-800"></span>
@@ -83,10 +101,12 @@ export default function Navbar() {
             {/* Mobile Menu */}
             {isOpen && (
                 <motion.div
+                    ref={dropdownRef}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                     className="md:hidden absolute top-16 left-0 w-full bg-white shadow-lg z-10 p-4"
+
                 >
                     <ul className="flex flex-col space-y-4">
                         {['Home', 'Services', 'Testimonials', 'About Us', 'Contact Us'].map((link, ind) => (

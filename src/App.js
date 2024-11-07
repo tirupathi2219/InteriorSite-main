@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Aboutus from './components/AboutUs';
 import ContactUs from './components/ContactUs';
-import CustomCursor from './components/CustomMouse';
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';
 import OurServices from './components/OurServices';
@@ -15,7 +14,6 @@ function App() {
   return (
     <Router>
       <div className="app flex flex-col  m-auto">
-        <CustomCursor />
         <Navbar />
         <Routes>
           <Route
