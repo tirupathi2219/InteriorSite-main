@@ -11,6 +11,10 @@ import { FaWhatsapp } from 'react-icons/fa';
 import ServicePage from './pages/ServicePage';
 
 function App() {
+  const phoneNumber = '9848333169'
+  const message = 'Hello, I need help!'
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+
   return (
     <Router>
       <div className="app flex flex-col  m-auto">
@@ -32,7 +36,9 @@ function App() {
           <Route path="services" element={<ServicePage />} />
         </Routes>
         <div className="whatsapp-icon">
-          <FaWhatsapp size={60} className="text-white" />
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+            <FaWhatsapp size={60} className="text-white" />
+          </a>
         </div>
       </div>
     </Router>

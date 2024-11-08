@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useRef, useState,useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import logo from '../assets/logo.svg'
 import { NavLinks, serviceData } from '../utils/servicesData';
 
@@ -8,10 +8,13 @@ export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
     const [showSubMenu, setShowSubMenu] = useState(false);
     const dropdownRef = useRef(null);
+    const menuButtonRef = useRef(null);
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target) &&
+                menuButtonRef.current && !menuButtonRef.current.contains(event.target)) {
                 setIsOpen(false);
+                setShowSubMenu(false);
             }
         };
 
@@ -22,6 +25,16 @@ export default function Navbar() {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+
+    const toggleMenu = (event) => {
+        event.stopPropagation();
+        setIsOpen(!isOpen);
+        setShowSubMenu(false);
+    };
+
+    const getServiceLink = (service) => {
+        return `/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`;
+    };
 
     return (
         <nav className="nav-header flex items-center justify-between p-4 bg-white text-gray-800 sticky top-0 z-10">
@@ -72,7 +85,7 @@ export default function Navbar() {
                                     >
                                         {serviceData.map((service) => (
                                             <li key={service.id} className="py-1 px-2 hover:bg-gray-200 rounded">
-                                                <a href={`${service.title}`} className="text-gray-700">
+                                                <a href={getServiceLink(service)} className="text-gray-700">
                                                     {service.title}
                                                 </a>
                                             </li>
@@ -89,8 +102,9 @@ export default function Navbar() {
 
             {/* Mobile Menu Toggle */}
             <div
+                ref={menuButtonRef}
                 className="md:hidden flex flex-col space-y-1 cursor-pointer"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={toggleMenu}
 
             >
                 <span className="block w-6 h-0.5 bg-gray-800"></span>
@@ -131,7 +145,7 @@ export default function Navbar() {
                                             >
                                                 {serviceData.map((service) => (
                                                     <li key={service.id} className="text-gray-600 hover:text-[#ab8925]">
-                                                        <a href={`#${service.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                                                        <a href={getServiceLink(service)}>
                                                             {service.title}
                                                         </a>
                                                     </li>

@@ -398,7 +398,7 @@ body {
 
 @media (max-width: 640px) {
   .whatsapp-icon{
-    display: none;
+    /* display: none; */
   }
 }
 
